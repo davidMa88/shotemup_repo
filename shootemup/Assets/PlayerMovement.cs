@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 
-public class PayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
 
 	public float maxSpeed;
 	public float aceleration;
@@ -40,7 +40,9 @@ public class PayerMovement : MonoBehaviour {
 			axis = new Vector3 (Input.GetAxis ("Horizontal") * 2, Input.GetAxis ("Vertical") * 2, 0);
 		}
 
-		speedDebug.text = rigidBody.velocity.magnitude.ToString ();
+        if (speedDebug != null)
+		    speedDebug.text = rigidBody.velocity.magnitude.ToString ();
+
 		axisDebug.SetPosition (0, transform.position);
 		axisDebug.SetPosition (1, transform.position + axis);
 	}
