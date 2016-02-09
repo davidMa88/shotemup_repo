@@ -15,9 +15,10 @@ public class Enemy : MonoBehaviour {
 	void Update(){
 
 		if (Input.GetKeyDown (KeyCode.P)) {
-            var go = new GameObject("Bullet", typeof(Bullet));
-            go.GetComponent<Bullet>().SetInitialPosition(transform.position);
-            go.GetComponent<Bullet>().SetSprite(bullet.sprite);
+            var newBullet = new GameObject("Bullet", typeof(Bullet)).GetComponent<Bullet>();
+            newBullet.SetInitialPosition(transform.position);
+            newBullet.SetSprite(bullet.sprite);
+            newBullet.SetLifeTime(bullet.lifeTime);
 		}
         
 	}
@@ -28,4 +29,5 @@ public class Enemy : MonoBehaviour {
 public class SBullet
 {
     public Sprite sprite;
+    public float lifeTime;
 }

@@ -5,9 +5,8 @@ using System.Collections;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class Bullet : MonoBehaviour {
-
-    private bool shooted = false;
-
+    
+    private Sprite sprite;
     private float lifeTime = 0.5f;
     
 	void Start ()
@@ -17,23 +16,24 @@ public class Bullet : MonoBehaviour {
 	
 	void Update ()
     {
-        if (shooted)
-        {
-            transform.position += Vector3.down * Time.deltaTime * 10.0f;
-        }
+        transform.position += Vector3.down * Time.deltaTime * 10.0f;
     }
 
     public void SetInitialPosition(Vector3 pos)
     {
         transform.position = pos;
-        shooted = true;
     }
 
     public void SetSprite(Sprite sprite)
     {
         GetComponent<SpriteRenderer>().sprite = sprite;
+        this.sprite = sprite;
     }
 
+    public void SetLifeTime(float lifeTime)
+    {
+        this.lifeTime = lifeTime;
+    }
 
     public void OnCollisionEnter2D(Collision2D col)
     {
