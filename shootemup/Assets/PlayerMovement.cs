@@ -62,7 +62,6 @@ public class PlayerMovement : MonoBehaviour {
 		normalizedBrake = minBrakeValue + normalizedBrake - (minBrakeValue * normalizedBrake);  // <-- Obligo que sea entre 0.5f y 1f 
 		normalizedBrake = minBrakeValue - normalizedBrake + 1.0f;						 		// <-- Invierto el valoe (cuando 0.5f es 1f, cuando 1f es 0.5f)
 
-		Debug.Log(normalizedBrake);
 	}
 
 }

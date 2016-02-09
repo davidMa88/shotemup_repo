@@ -15,10 +15,9 @@ public class Enemy : MonoBehaviour {
 	void Update(){
 
 		if (Input.GetKeyDown (KeyCode.P)) {
-            //World.Bullets.Add((Bullet)Instantiate(new Bullet(bullet), transform.position, Quaternion.identity));
-
-            Bullet newBullet = gameObject.AddComponent<Bullet>();
-            newBullet.sprite = bullet.sprite;
+            var go = new GameObject("Bullet", typeof(Bullet));
+            go.GetComponent<Bullet>().SetInitialPosition(transform.position);
+            go.GetComponent<Bullet>().SetSprite(bullet.sprite);
 		}
         
 	}
@@ -28,6 +27,5 @@ public class Enemy : MonoBehaviour {
 [System.Serializable]
 public class SBullet
 {
-    public string type;
     public Sprite sprite;
 }
