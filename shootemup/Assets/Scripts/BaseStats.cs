@@ -10,6 +10,8 @@ public class BaseStats {
     
     public float maxSpeed;
     public float aceleration;
+    [Range(0f, 1f)]
+    public float brake;
     public float weight;
 
     public float shootDamage;

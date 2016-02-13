@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        _playerMovement.Update(ref rigidBody, stats.aceleration);
+        _playerMovement.Update(ref rigidBody, stats);
         
 	}
 }
