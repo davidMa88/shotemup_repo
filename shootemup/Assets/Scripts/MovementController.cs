@@ -3,39 +3,29 @@ using UnityEngine.UI;
 using System.Collections;
 
 
-public class PlayerMovement
+public class MovementController
 {
+    public LineRenderer axisDebug;
+    public Vector3 axis;
 
-    public float maxSpeed;
-    public float aceleration = 10f;
-    [Range(0f, 1f)]
-    public float brake;
-
-    public Text speedDebug;
-
-    Rigidbody2D rigidBody;
-    LineRenderer axisDebug;
-    Vector3 axis;
-
-    float normalizedBrake;
-    float minBrakeValue = 0.5f;
+    private float normalizedBrake;
+    private float minBrakeValue = 0.5f;
 
 
-    public PlayerMovement() { }
-
-    public void Update(ref Rigidbody2D rigidBody, BaseStats stats)
+    public MovementController()
     {
-        float dx = Input.GetAxis("Horizontal");
-        float dy = Input.GetAxis("Vertical");
+    }
 
-        rigidBody.velocity += new Vector2(dx, dy) * Time.fixedDeltaTime * stats.aceleration;
+    public void CalculateVelocity(ref Rigidbody2D rigidBody, BaseStats stats, Vector2 direction, Action action)
+    {
+        rigidBody.velocity += direction * Time.fixedDeltaTime * stats.aceleration;
 
         if (rigidBody.velocity.magnitude > stats.maxSpeed)
         {
             rigidBody.velocity = rigidBody.velocity.normalized * stats.maxSpeed;
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (action == Action.BRAKE)
         {
             normalizedBrake = stats.brake;
             normalizedBrake = minBrakeValue + normalizedBrake - (minBrakeValue * normalizedBrake);  // <-- Obligo que sea entre 0.5f y 1f 
@@ -44,10 +34,11 @@ public class PlayerMovement
             rigidBody.velocity *= normalizedBrake;
             axis *= normalizedBrake;
         }
-        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        else if (action == Action.UP || action == Action.RIGHT || action == Action.DOWN || action == Action.LEFT)
         {
             axis = new Vector3(Input.GetAxis("Horizontal") * 2, Input.GetAxis("Vertical") * 2, 0);
         }
+
     }
 }
 

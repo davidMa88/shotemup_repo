@@ -1,6 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
+[System.Serializable]
+public class SBullet
+{
+    public Sprite sprite;
+    public float lifeTime;
+    public float speed;
+}
+
+
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]

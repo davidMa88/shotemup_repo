@@ -1,6 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
+[System.Serializable]
+public class SWeapon
+{
+    public Sprite sprite;
+    public SBullet bullet;
+}
+
+
 [RequireComponent(typeof(SpriteRenderer))]
 public class Weapon : MonoBehaviour {
 
