@@ -1,44 +1,45 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
-
-public class MovementController
+namespace shootemup
 {
-    public LineRenderer axisDebug;
-    public Vector3 axis;
-
-    private float normalizedBrake;
-    private float minBrakeValue = 0.5f;
-
-
-    public MovementController()
+    public class MovementController
     {
-    }
+        public LineRenderer axisDebug;
+        public Vector3 axis;
 
-    public void CalculateVelocity(ref Rigidbody2D rigidBody, BaseStats stats, Vector2 direction, Action action)
-    {
-        rigidBody.velocity += direction * Time.fixedDeltaTime * stats.aceleration;
+        private float normalizedBrake;
+        private float minBrakeValue = 0.5f;
 
-        if (rigidBody.velocity.magnitude > stats.maxSpeed)
+
+        public MovementController()
         {
-            rigidBody.velocity = rigidBody.velocity.normalized * stats.maxSpeed;
         }
 
-        if (action == Action.BRAKE)
+        public void CalculateVelocity(ref Rigidbody2D rigidBody, BaseStats stats, Vector2 direction, Action.MoveAction action)
         {
-            normalizedBrake = stats.brake;
-            normalizedBrake = minBrakeValue + normalizedBrake - (minBrakeValue * normalizedBrake);  // <-- Obligo que sea entre 0.5f y 1f 
-            normalizedBrake = minBrakeValue - normalizedBrake + 1.0f;						 		// <-- Invierto el valoe (cuando 0.5f es 1f, cuando 1f es 0.5f)
-            
-            rigidBody.velocity *= normalizedBrake;
-            axis *= normalizedBrake;
-        }
-        else if (action == Action.UP || action == Action.RIGHT || action == Action.DOWN || action == Action.LEFT)
-        {
-            axis = new Vector3(Input.GetAxis("Horizontal") * 2, Input.GetAxis("Vertical") * 2, 0);
-        }
+            rigidBody.velocity += direction * Time.fixedDeltaTime * stats.aceleration;
 
+            if (rigidBody.velocity.magnitude > stats.maxSpeed)
+            {
+                rigidBody.velocity = rigidBody.velocity.normalized * stats.maxSpeed;
+            }
+
+            if (action == Action.MoveAction.BRAKE)
+            {
+                normalizedBrake = stats.brake;
+                normalizedBrake = minBrakeValue + normalizedBrake - (minBrakeValue * normalizedBrake);  // <-- Obligo que sea entre 0.5f y 1f 
+                normalizedBrake = minBrakeValue - normalizedBrake + 1.0f;                               // <-- Invierto el valoe (cuando 0.5f es 1f, cuando 1f es 0.5f)
+
+                rigidBody.velocity *= normalizedBrake;
+                axis *= normalizedBrake;
+            }
+            else if (action == Action.MoveAction.UP || action == Action.MoveAction.RIGHT || action == Action.MoveAction.DOWN || action == Action.MoveAction.LEFT)
+            {
+                axis = new Vector3(Input.GetAxis("Horizontal") * 2, Input.GetAxis("Vertical") * 2, 0);
+            }
+
+        }
     }
 }
 

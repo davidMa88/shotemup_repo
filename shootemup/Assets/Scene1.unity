@@ -85,6 +85,61 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &742259338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 742259341}
+  - 114: {fileID: 742259340}
+  - 65: {fileID: 742259339}
+  m_Layer: 8
+  m_Name: WaypointManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &742259339
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742259338}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &742259340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742259338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92845e9c9ec417a44ae411072375c142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathList:
+  - {fileID: 11400000, guid: 74f9ab888400c7d42bdb91f0775d00bf, type: 2}
+  - {fileID: 11400000, guid: 621ca548ec6857147a81dec49923a540, type: 2}
+--- !u!4 &742259341
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742259338}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1 &1108611975
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +453,7 @@ GameObject:
   - 114: {fileID: 1616677055}
   - 212: {fileID: 1616677053}
   - 50: {fileID: 1616677056}
+  - 114: {fileID: 1616677057}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -442,7 +498,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1616677052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.42, y: 10.73, z: 0}
+  m_LocalPosition: {x: -8.75, y: 11.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -490,3 +546,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1616677057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1616677052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f838caf57ef04ed4f8da220f79079f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logMessage: 0
+  pathData: {fileID: 11400000, guid: 74f9ab888400c7d42bdb91f0775d00bf, type: 2}
+  followType: 2
+  followDirection: 0
+  moveSpeed: 10
+  rotateSpeed: 10
+  _flip: 0
+  _lookForward: 0
+  _smoothLookForward: 0
